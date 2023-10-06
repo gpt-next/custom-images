@@ -10,6 +10,10 @@ RUN curl -LO https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/op
 
 COPY install-tools.sh /usr/local/bin/install-tools.sh
 RUN mkdir -p /home/atlantis/.ssh
+RUN wget https://github.com/transcend-io/terragrunt-atlantis-config/releases/download/v1.16.0/terragrunt-atlantis-config_1.16.0_linux_amd64.tar.gz && \
+    tar xf terragrunt-atlantis-config_1.16.0_linux_amd64.tar.gz && \
+    mv terragrunt-atlantis-config_1.16.0_linux_amd64/terragrunt-atlantis-config_1.16.0_linux_amd64 terragrunt-atlantis-config && \
+    install terragrunt-atlantis-config /usr/local/bin
 #RUN ssh-keyscan github.ibm.com >> /home/atlantis/.ssh/known_hosts
 WORKDIR /home/atlantis
 USER atlantis
