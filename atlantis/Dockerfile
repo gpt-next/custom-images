@@ -15,7 +15,7 @@ RUN wget https://github.com/transcend-io/terragrunt-atlantis-config/releases/dow
     mv terragrunt-atlantis-config_1.16.0_linux_amd64/terragrunt-atlantis-config_1.16.0_linux_amd64 terragrunt-atlantis-config && \
     install terragrunt-atlantis-config /usr/local/bin
 #RUN ssh-keyscan github.ibm.com >> /home/atlantis/.ssh/known_hosts
-COPY .tool-versions /home/atlantis/.tool-versions
+COPY .tool-versions ${SRC_DIR}/.tool-versions
 WORKDIR /home/atlantis
 RUN rm -rf ${TOOLS_DIR} && install-tools.sh
 USER atlantis
