@@ -45,3 +45,15 @@ jobs:
           push: true
           tags: ${{ steps.meta-atlantis.outputs.tags }}
           labels: ${{ steps.meta-atlantis.outputs.labels }}
+      - name: Extract metadata (tags, labels) for github-runner Docker Image
+        id: meta-github-runner
+        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+        with:
+          images: ${{ env.REGISTRY }}/${{ github.repository }}-github-runner
+      - name: Build and push github-runner Docker image
+        uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
+        with:
+          context: ./github-runner
+          push: true
+          tags: ${{ steps.meta-github-runner.outputs.tags }}
+          labels: ${{ steps.meta-github-runner.outputs.labels }}
