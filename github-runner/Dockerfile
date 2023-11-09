@@ -20,7 +20,7 @@ ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
 #RUN mkdir -p /home/build/.config/containers \
 #&& (echo '[storage]';echo 'driver = "vfs"') > /home/build/.config/containers/storage.conf
 
-#RUN /actions-runner/bin/installdependencies.sh
+RUN /actions-runner/bin/installdependencies.sh
 
 COPY start.sh start.sh
 
