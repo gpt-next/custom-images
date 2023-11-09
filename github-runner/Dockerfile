@@ -8,7 +8,7 @@ ENV RUNNER_ALLOW_RUNASROOT=1
 
 
 #RUN yum update -y && yum upgrade -y
-RUN yum install -y curl jq python3 python3-pip container-selinux
+RUN yum install -y curl jq python3 python3-pip
 RUN cd / && mkdir actions-runner && cd actions-runner \
     && curl -O -L https://github.com/actions/runner/releases/download/v${RUNNER_VERSION}/actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz \
     && tar xzf ./actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz
@@ -26,6 +26,7 @@ COPY start.sh start.sh
 
 # make the script executable
 RUN chmod +x start.sh
+
 
 # since the config and run script for actions are not allowed to be run by root,
 # set the user to "build" so all subsequent commands are run as the build user
