@@ -11,7 +11,7 @@ RUN touch /etc/subgid /etc/subuid \
 && echo build:10000:65536 > /etc/subgid
 
 RUN yum update -y && yum upgrade -y
-RUN yum install -y curl jq python3 python3-pip
+RUN yum install -y curl jq python3 python3-pip container-selinux
 
 RUN cd /home/build && mkdir actions-runner && cd actions-runner \
     && curl -O -L https://github.com/actions/runner/releases/download/v${RUNNER_VERSION}/actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz \
@@ -21,8 +21,8 @@ RUN cd /home/build && mkdir actions-runner && cd actions-runner \
 RUN echo "export BUILDAH_ISOLATION=chroot" >> /home/build/.bashrc
 
 # Use VFS since fuse does not work
-RUN mkdir -p /home/build/.config/containers \
-&& (echo '[storage]';echo 'driver = "vfs"') > /home/build/.config/containers/storage.conf
+#RUN mkdir -p /home/build/.config/containers \
+#&& (echo '[storage]';echo 'driver = "vfs"') > /home/build/.config/containers/storage.conf
 
 RUN chown -R build ~build && /home/build/actions-runner/bin/installdependencies.sh
 
