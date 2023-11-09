@@ -1,4 +1,4 @@
-FROM quay.io/buildah/stable:v1.23.1
+FROM quay.io/buildah/stable:latest
 
 ARG RUNNER_VERSION="2.294.0"
 
