@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 quay.io/buildah/stable:latest
+FROM quay.io/buildah/stable:v1.17.0
 USER root
 ARG RUNNER_VERSION="2.294.0"
 
