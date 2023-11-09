@@ -1,5 +1,5 @@
 FROM --platform=linux/amd64 quay.io/buildah/stable:latest
-
+USER root
 ARG RUNNER_VERSION="2.294.0"
 
 # Prevents installdependencies.sh from prompting the user and blocking the image creation
