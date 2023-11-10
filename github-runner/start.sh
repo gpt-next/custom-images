@@ -2,6 +2,7 @@
 
 REPOSITORY=$REPO
 ACCESS_TOKEN=$TOKEN
+RUNNER_LABELS=$RUNNER_LABELS
 
 #echo "REPO ${REPOSITORY}"
 #echo "ACCESS_TOKEN ${ACCESS_TOKEN}"
@@ -9,7 +10,7 @@ ACCESS_TOKEN=$TOKEN
 REG_TOKEN=$(curl -L -X POST -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $ACCESS_TOKEN" -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/orgs/$REPOSITORY/actions/runners/registration-token | jq .token --raw-output)
 cd /home/build/actions-runner
 
-./config.sh --url https://github.com/${REPOSITORY} --token ${REG_TOKEN}
+./config.sh --url https://github.com/${REPOSITORY} --token ${REG_TOKEN} --labels ${RUNNER_LABELS}
 
 cleanup() {
     echo "Removing runner..."
